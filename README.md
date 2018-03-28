@@ -37,10 +37,11 @@ Note: You need the guest additions, you can install these with
 - Copy roles/jmeter/files/xcloud-performance.properties.dist to roles/jmeter/filesxcloud-performance.properties and edit
 - Copy vars/main.yml.dist to vars/main.yml, edit if required
 - Execute `vagrant up`
+- Have some tea
 - Execute `vagrant ssh` to log into the VM
-- You can browse to the different installations on http://localhost:8080/*vendor*-*version*
-- Current Owncloud versies are 8.2.11, 9.1.8, 10.0.3 and 10.0.7
-- Current Nextcloud versies are 10.0.6, 11.0.4, 12.0.2 and 13.0.1
+- You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.7
+- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3 and 10.0.7
+- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2 and 13.0.1
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
 
