@@ -50,7 +50,7 @@ Note: You need the guest additions, you can install these with
 To run the tests:
 
 - Log into the VM with `vagrant ssh`
-- `sudo /opt/apache-jmeter-*/run.sh *vendor* *versie*` to test a specific version
+- `sudo /opt/apache-jmeter-*/run.sh *vendor* *version*` to test a specific version
 - `sudo /opt/apache-jmeter-*/all.sh` to test all versions
 
 The tests run on a clean database, so all data is written by the test. You can also do an extra run with additional data applied. To do so, put a sql file in roles/jmeter/files/dumps, named *vendor*-*version*-extra.sql.
@@ -61,14 +61,14 @@ By passing a command line option, all queries are logged and written to the outp
 - `sudo /opt/apache-jmeter-4.0/all.sh log-mysql`
 
 or
-- `sudo /opt/apache-jmeter-4.0/run.sh *vendor* *versie* log-mysql`
+- `sudo /opt/apache-jmeter-4.0/run.sh *vendor* *version* log-mysql`
 
 ### Checking the results
 
-When a test has run, a HTML report is written to *vagrant-dir*/data/jmeter/*vendor*-*versie*/html
+When a test has run, a HTML report is written to *vagrant-dir*/data/jmeter/*vendor*-*version*/html
 (JMeter writes it to the shared folder)
 
-The data of the optional second run are in *vagrant-dir*/data/jmeter/*vendor*-*versie*/html-extra
+The data of the optional second run are in *vagrant-dir*/data/jmeter/*vendor*-*version*/html-extra
 
 ### Viewing/editting the tests
 
