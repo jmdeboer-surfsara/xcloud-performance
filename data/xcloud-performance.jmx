@@ -146,14 +146,14 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="userid" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">gebruiker${userCounter1}</stringProp>
+                  <stringProp name="Argument.value">user${userCounter1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">userid</stringProp>
                 </elementProp>
                 <elementProp name="password" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">gebruiker${userCounter1}</stringProp>
+                  <stringProp name="Argument.value">user${userCounter1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">password</stringProp>
@@ -185,8 +185,8 @@
             <collectionProp name="AuthManager.auth_list">
               <elementProp name="" elementType="Authorization">
                 <stringProp name="Authorization.url"></stringProp>
-                <stringProp name="Authorization.username">gebruiker${userCounter2}</stringProp>
-                <stringProp name="Authorization.password">gebruiker${userCounter2}</stringProp>
+                <stringProp name="Authorization.username">user${userCounter2}</stringProp>
+                <stringProp name="Authorization.password">user${userCounter2}</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
                 <stringProp name="Authorization.realm"></stringProp>
               </elementProp>
@@ -255,8 +255,8 @@
             <collectionProp name="AuthManager.auth_list">
               <elementProp name="" elementType="Authorization">
                 <stringProp name="Authorization.url"></stringProp>
-                <stringProp name="Authorization.username">gebruiker2</stringProp>
-                <stringProp name="Authorization.password">gebruiker2</stringProp>
+                <stringProp name="Authorization.username">user2</stringProp>
+                <stringProp name="Authorization.password">user2</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
                 <stringProp name="Authorization.realm"></stringProp>
               </elementProp>
@@ -306,8 +306,8 @@
               <collectionProp name="AuthManager.auth_list">
                 <elementProp name="" elementType="Authorization">
                   <stringProp name="Authorization.url"></stringProp>
-                  <stringProp name="Authorization.username">gebruiker1</stringProp>
-                  <stringProp name="Authorization.password">gebruiker1</stringProp>
+                  <stringProp name="Authorization.username">user1</stringProp>
+                  <stringProp name="Authorization.password">user1</stringProp>
                   <stringProp name="Authorization.domain"></stringProp>
                   <stringProp name="Authorization.realm"></stringProp>
                 </elementProp>
@@ -342,7 +342,7 @@
                   </elementProp>
                   <elementProp name="shareWith" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">gebruiker2</stringProp>
+                    <stringProp name="Argument.value">user2</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">shareWith</stringProp>
@@ -374,8 +374,8 @@
               <collectionProp name="AuthManager.auth_list">
                 <elementProp name="" elementType="Authorization">
                   <stringProp name="Authorization.url"></stringProp>
-                  <stringProp name="Authorization.username">gebruiker2</stringProp>
-                  <stringProp name="Authorization.password">gebruiker2</stringProp>
+                  <stringProp name="Authorization.username">user2</stringProp>
+                  <stringProp name="Authorization.password">user2</stringProp>
                   <stringProp name="Authorization.domain"></stringProp>
                   <stringProp name="Authorization.realm"></stringProp>
                 </elementProp>
