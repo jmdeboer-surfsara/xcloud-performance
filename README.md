@@ -5,7 +5,7 @@ This project strives to create a reproducable setup with which to test different
 The test does the following:
 
 - Start off with a clean database
-- Create an X number of users, usernames are user1, user3, etcetera
+- Create an X number of users, usernames are user1, user2, etcetera
 - Password is equal to username
 - Do an X number of uploads for each user
 - user1 shares a number of files with user2
@@ -22,7 +22,7 @@ After cloning the project, you need to copy two .dist files, and edit them to yo
 
 To make sure the downloading of sources works without problems, it is advisible to create your own mirror; downloading from the vendors gave me some trouble. All sources are expected to be in zip format.
 
-You can enter the locaction of source in vars/main.yml
+You can enter the location of sources in vars/main.yml
 
 ## Using in combination with Vagrant
 
