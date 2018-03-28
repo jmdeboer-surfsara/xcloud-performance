@@ -14,8 +14,8 @@ The test does the following:
 # Setup after cloning
 
 After cloning the project, you need to copy two .dist files, and edit them to your needs:
-- vars/main.yml.dist -> main.yml
-- roles/jmeter/files/xcloud-performance.properties.dist -> xcloud-performance.properties
+- vars/main.yml.dist -> vars/main.yml
+- roles/jmeter/files/xcloud-performance.properties.dist -> roles/jmeter/files/xcloud-performance.properties
 
 
 ## OwnCloud/NextCloud sources
@@ -30,13 +30,13 @@ Install [Ansible >=2.4](https://www.ansible.com/), [Vagrant](https://www.vagrant
 
 - Make a clone of this project
 - Enter the project directory
-- Copy roles/jmeter/files/xcloud-performance.properties.dist to xcloud-performance.properties
-- Copy vars/main.yml.dist to vars/main.yml
+- Copy roles/jmeter/files/xcloud-performance.properties.dist to roles/jmeter/filesxcloud-performance.properties and edit
+- Copy vars/main.yml.dist to vars/main.yml, edit if required
 - Execute `vagrant up`
 - Execute `vagrant ssh` to log into the VM
 - You can browse to the different installations on http://localhost:8080/*vendor*-*version*
-- Current Owncloud versies are 8.2.11, 9.1.8, 10.0.3 en 10.0.7
-- Current Nextcloud versies are 10.0.6, 11.0.4 en 12.0.2
+- Current Owncloud versies are 8.2.11, 9.1.8, 10.0.3 and 10.0.7
+- Current Nextcloud versies are 10.0.6, 11.0.4, 12.0.2 and 13.0.1
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
 
