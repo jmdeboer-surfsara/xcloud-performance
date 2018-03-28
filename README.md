@@ -28,6 +28,10 @@ You can enter the locaction of source in vars/main.yml
 
 Install [Ansible >=2.4](https://www.ansible.com/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
 
+Note: You need the guest additions, you can install these with
+
+`vagrant plugin install vagrant-vbguest`
+
 - Make a clone of this project
 - Enter the project directory
 - Copy roles/jmeter/files/xcloud-performance.properties.dist to roles/jmeter/filesxcloud-performance.properties and edit
