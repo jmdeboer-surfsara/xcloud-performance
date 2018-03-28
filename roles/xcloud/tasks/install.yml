@@ -1,0 +1,58 @@
+---
+
+- name: check for installed {{ vendor }} {{ version }}
+  stat: path=/var/www/html/{{ vendor }}-{{ version }}/occ
+  register: occ
+
+- name: install {{ vendor }} {{ version }}
+  shell: |
+    cd /var/www/html
+    wget {{ download }}
+    unzip {{ zipfile }}
+    mv {{ unpacked }} {{ vendor }}-{{ version }} 
+    rm {{ zipfile }}
+  when: occ.stat.exists == False
+
+- name: create data directory for {{ vendor }} {{ version }}
+  file: path=/var/www/html/{{ vendor }}-{{ version }}/data state=directory owner=apache group=apache
+  when: occ.stat.exists == False
+
+- name: copy optional data files for {{ vendor }} {{ version }}
+  copy: src=files/data/{{ vendor }}-{{ version }}/appdata_{{ instanceid }} dest=/var/www/html/{{ vendor }}-{{ version }}/data/ owner=apache group=apache
+  failed_when: False
+  ignore_errors: True
+  when: occ.stat.exists == False
+  
+- name: create .ocdata file for {{ vendor }} {{ version }}
+  file: path=/var/www/html/{{ vendor }}-{{ version }}/data/.ocdata state=touch owner=apache group=apache
+  when: occ.stat.exists == False
+
+- name: fix permission on config directory for {{ vendor }} {{ version }}
+  file: path=/var/www/html/{{ vendor }}-{{ version }}/config owner=apache group=apache
+  when: occ.stat.exists == False
+
+- name: fix permission on apps directory for {{ vendor }} {{ version }}
+  file: path=/var/www/html/{{ vendor }}-{{ version }}/apps owner=apache group=apache
+  when: occ.stat.exists == False
+
+- name: create database for {{ vendor }} {{ version }}
+  mysql_db:
+    name: "{{ vendor }}-{{ database }}"
+    state: present
+  when: occ.stat.exists == False
+
+- name: create database user for {{ vendor }} {{ version }}
+  mysql_user:
+    name: "{{ vendor }}-{{ database }}"
+    password: "{{ vendor }}-{{ database }}"
+    priv: "{{ vendor }}-{{ database }}.*:ALL,GRANT"
+    state: present
+  when: occ.stat.exists == False
+
+- name: import database for {{ vendor }} {{ version }}
+  mysql_db:
+    name: "{{ vendor }}-{{ database }}"
+    state: import
+    target: /vagrant/roles/jmeter/files/dumps/{{ vendor }}-{{ database }}.sql.bz2
+  when: occ.stat.exists == False
+    

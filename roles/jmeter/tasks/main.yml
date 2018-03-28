@@ -1,0 +1,62 @@
+---
+
+- name: install openjdk
+  yum: name=java-1.8.0-openjdk state=present update_cache=yes disable_gpg_check=yes validate_certs=no
+  tags:
+    - jdk
+    - jmeter
+    - yum
+
+- name: check if jmeter is already downloaded
+  stat: path=/opt/apache-jmeter-{{ jmeter_version }}.zip
+  register: download
+  tags:
+    - jmeter
+
+  
+- name: download jmeter
+  get_url: url={{ jmeter_download }} dest=/opt/apache-jmeter-{{ jmeter_version }}.zip
+  when: download.stat.exists == false
+  tags:
+    - jmeter
+
+- name: check if jmeter is unpacked
+  stat: path=/opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter
+  register: jmeter
+  tags:
+    - jmeter
+
+- name: unpack jmeter
+  unarchive: src=/opt/apache-jmeter-{{ jmeter_version }}.zip dest=/opt remote_src=yes
+  when: jmeter.stat.exists == false
+  tags:
+    - jmeter
+
+- name: copy database dumps to /opt
+  copy: src=files/dumps dest=/opt
+  tags:
+    - jmeter
+
+- name: copy testfile to /tmp directory
+  copy: src=files/upload dest=/tmp
+  tags:
+    - jmeter
+
+- name: copy files to apache-jmeter-{{ jmeter_version }} directory
+  copy: src=files/{{ item }} dest=/opt/apache-jmeter-{{ jmeter_version }} mode=0776
+  with_items:
+    - xcloud-performance.properties
+  tags:
+    - jmeter
+
+- name: copy shell files to apache-jmeter-{{ jmeter_version }} directory
+  template: src={{ item }} dest=/opt/apache-jmeter-{{ jmeter_version }}/{{ item | basename | regex_replace("\.j2$", "") }} owner=root group=root mode=0776
+  with_fileglob: templates/*.j2
+  tags:
+    - jmeter
+
+- name: install property file reader
+  copy: src=files/tag-jmeter-extn-1.1.jar dest=/opt/apache-jmeter-{{ jmeter_version }}/lib/ext
+  tags:
+    - jmeter
+

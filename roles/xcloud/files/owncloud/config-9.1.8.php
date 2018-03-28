@@ -1,0 +1,21 @@
+<?php
+$CONFIG = array (
+  'instanceid' => 'occhcekf8lhd',
+  'passwordsalt' => 'aTe7tTsiDoponOO5TGKSFTWnUuud2A',
+  'secret' => '2sbQiQyplHLVWa5mZ6KXotuFsJfeepwM92M794vM3nI4Tet/',
+  'trusted_domains' => 
+  array (
+    0 => 'localhost:8080',
+  ),
+  'datadirectory' => '/var/www/html/owncloud-9.1.8/data',
+  'overwrite.cli.url' => 'http://localhost:8080/owncloud-9.1.8',
+  'dbtype' => 'mysql',
+  'version' => '9.1.8.2',
+  'dbname' => 'owncloud-918',
+  'dbhost' => 'localhost',
+  'dbtableprefix' => 'oc_',
+  'dbuser' => 'owncloud-918',
+  'dbpassword' => 'owncloud-918',
+  'logtimezone' => 'UTC',
+  'installed' => true,
+);

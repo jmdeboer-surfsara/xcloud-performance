@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+PORT="{{ memcached_port }}"
+USER="memcached"
+MAXCONN="{{ memcached_maxconn }}"
+CACHESIZE="{{ memcached_cachesize }}"
+LOGFILE="/var/log/memcached.log"
+OPTIONS="-{{ memcached_log_verbosity }} >> /var/log/memcached.log 2>&1"

@@ -1,0 +1,37 @@
+---
+
+- name: install redis
+  yum: name={{ item }} update_cache=yes disable_gpg_check=yes validate_certs=no
+  with_items: "{{ redis_packages }}"
+  tags:
+    - redis
+    - yum
+
+- name: check if /etc/redis.conf exists
+  stat: path=/etc/redis.conf
+  register: r
+  tags:
+    - redis
+
+- name: create /etc/redis.conf
+  when: "r is defined and not r.stat.exists"
+  file: dest=/etc/redis.conf state=touch owner=root group=root mode=0644
+  tags:
+    - redis
+
+- name: populate redis.conf
+  lineinfile: dest=/etc/redis.conf regexp={{ item.regexp }} line={{ item.line }}
+  with_items:
+    - { regexp: '^port ',    line: 'port {{ redis_port }}' }
+    - { regexp: '^bind ',    line: 'bind {{ redis_ip }}' }
+    - { regexp: '^timeout ', line: 'timeout {{ redis_timeout }}' }
+  notify:
+    - restart redis
+  tags:
+    - redis
+
+- name: ensure redis is is running and started at boot
+  service: name=redis state=started enabled=yes
+  tags:
+    - redis
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /opt/apache-jmeter-{{ jmeter_version }}
+
+{% for item in xcloud_versions %}
+./run.sh {{ item.vendor }} {{ item.version }} $1
+{% endfor %}

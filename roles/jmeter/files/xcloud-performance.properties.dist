@@ -1,0 +1,16 @@
+protocol=http
+baseUrl=localhost
+port=80
+
+# number of users and uploads per user
+numUsers=20
+numUploads=100
+
+# number of shares created, and how many times this is done
+# in the example below, 100 shares are created
+# Note: this number may not be greater than numUploads
+numShares=20
+numIncrements=5
+
+# number of propfinds done after incrementing share count
+numPropfinds=10

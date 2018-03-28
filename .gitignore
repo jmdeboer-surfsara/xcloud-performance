@@ -1,0 +1,9 @@
+data/owncloud-*
+data/nextcloud-*
+vars/main.yml
+xcloud-performance.properties
+.pydevproject
+.buildpath
+.project
+.vagrant
+*.retry

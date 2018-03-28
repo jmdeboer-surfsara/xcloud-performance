@@ -1,0 +1,62 @@
+php_max_execution_time: 259200
+php_max_input_time: 259200
+php_memory_limit: 1024M
+php_date_timezone: Europe/Amsterdam
+php_output_buffering: "Off"
+php_realpath_cache_size: 256k
+php_expose_php: "Off"
+php_post_max_size: 16G
+php_default_charset: UTF-8
+php_sys_temp_dir: /tmp
+php_upload_tmp_dir: /tmp
+php_upload_max_filesize: 16G
+php_max_file_uploads: 100
+php_mysql_connect_timeout: 600
+php_mysqli_reconnect: "On"
+php_session_save_handler: False
+php_session_save_path: /tmp/php/session
+php_mbstring_http_output: UTF-8
+php_soap_wsdl_cache_dir: /tmp/php/wsdlcache
+php_display_errors: "Off"
+
+php_opcache_enable: 1
+php_opcache_enable_cli: 1
+php_opcache_memory_consumption: 64
+php_opcache_interned_strings_buffer: 16
+php_opcache_max_accelerated_files: 2000
+php_opcache_validate_timestamps: 1
+php_opcache_revalidate_freq: 300
+php_opcache_save_comments: 1
+php_opcache_enable_file_override: 1
+php_opcache_max_file_size: 1M
+php_opcache_consistency_checks: 0
+
+php_apc_enabled: 1
+php_apc_shm_size: 384M
+php_apc_entries_hint: 10000
+php_apc_ttl: 3600
+php_apc_gc_ttl: 7200
+php_apc_enable_cli: 0
+php_apc_max_file_size: 2M
+php_apc_stat: 0
+
+
+php_packages:
+  - php70-php
+  - php70-php-cli
+  - php70-php-common
+  - php70-php-gd
+  - php70-php-mbstring
+  - php70-php-mysqlnd
+  - php70-php-opcache
+  - php70-php-pdo
+  - php70-php-pear
+  - php70-php-pecl-apcu
+  - php70-php-pecl-memcached
+  - php70-php-pecl-redis
+  - php70-php-pecl-zip
+  - php70-php-process
+  - php70-php-soap
+  - php70-php-xml
+  - php70-php-intl
+

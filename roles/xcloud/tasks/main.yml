@@ -1,0 +1,21 @@
+---
+
+- name: install {{ item.vendor }} {{ item.version }} sources
+  with_items: "{{ xcloud_versions }}"
+  include_tasks: install.yml
+                 vendor={{ item.vendor }}
+                 version={{ item.version }}
+                 database={{ item.dbname }}
+                 instanceid={{ item.instanceid }}
+                 download="{{ item.download_server }}/{{ item.vendor }}-{{ item.version }}.zip"
+                 zipfile={{ item.vendor }}-{{ item.version }}.zip
+                 unpacked={{ item.vendor }}
+  tags:
+    - xcloud
+
+- name: install config.php
+  copy: src=files/{{  item.vendor }}/config-{{  item.version }}.php dest=/var/www/html/{{  item.vendor }}-{{  item.version }}/config/config.php  owner=apache group=apache
+  with_items: "{{ xcloud_versions }}"
+  tags:
+    - xcloud
+

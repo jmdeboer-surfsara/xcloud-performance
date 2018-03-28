@@ -1,0 +1,16 @@
+---
+
+setup_packages:
+    - screen
+    - telnet
+    - binutils
+    - mlocate
+    - vim
+    - traceroute
+    - bash-completion
+    - bind-utils
+    - unzip
+    - MySQL-python
+    - xorg-x11-xauth
+    - python-requests
+    - wget

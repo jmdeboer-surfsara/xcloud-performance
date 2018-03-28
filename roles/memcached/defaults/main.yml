@@ -1,0 +1,9 @@
+---
+
+memcached_packages:
+  - memcached
+memcached_port: 11211
+memcached_cachesize: 32
+memcached_maxconn: 1024
+memcached_log_verbosity: "v"
+

@@ -1,0 +1,8 @@
+---
+
+httpd_packages:
+  - httpd
+  - httpd-tools
+  - mod_ssl
+
+

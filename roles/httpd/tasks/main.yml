@@ -1,0 +1,26 @@
+---
+
+- name: install httpd
+  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
+  with_items: "{{ httpd_packages }}"
+  tags:
+    - httpd
+    - yum
+
+- name: Add listening port 8080
+  lineinfile: path=/etc/httpd/conf/httpd.conf line="Listen 8080" state=present
+  notify: restart httpd
+  tags:
+    - httpd
+  
+- name: Add listening port 8443
+  lineinfile: path=/etc/httpd/conf.d/ssl.conf line="Listen 8443 https" state=present
+  notify: restart httpd
+  tags:
+    - httpd
+ 
+- name: ensure httpd is running and started at boot
+  service: name=httpd enabled=yes state=started
+  tags:
+    - httpd
+

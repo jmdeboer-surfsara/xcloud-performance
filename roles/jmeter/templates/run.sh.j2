@@ -1,0 +1,116 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+  echo "usage: run.sh <vendor> <version> [log-mysql]"
+  exit
+fi
+if [ -z $2 ]; then
+  echo "usage: run.sh <vendor> <version> [log-mysql]"
+  exit
+fi
+
+VENDOR=$1
+VERSION=$2
+LOG_MYSQL=$3
+
+DB="none"
+SQL="none"
+
+{% for item in xcloud_versions %}
+if [ $VENDOR == "{{ item.vendor }}" ]; then
+  if [ $VERSION == "{{ item.version }}" ]; then
+    DB="{{ item.vendor }}-{{ item.dbname }}"
+    SQL="{{ item.vendor }}-{{ item.dbname }}-extra.sql"
+  fi
+fi
+{% endfor %}
+
+if [ $DB == "none" ]; then
+  echo "The combination $VENDOR/$VERSION is not found."
+  exit
+fi
+
+# (re-)creating output dir
+OUTPUTDIR=/vagrant/data/$VENDOR-$VERSION
+rm -Rf $OUTPUTDIR
+mkdir -p $OUTPUTDIR
+mkdir $OUTPUTDIR/html
+
+# reset database
+echo "importing database"
+bzcat /opt/dumps/$DB.sql.bz2 | mysql -u root $DB
+
+# clear owncloud data directory
+echo "clearing data from previous runs"
+rm -rf /var/www/html/$VENDOR-$VERSION/data/user*
+rm -rf /var/www/html/$VENDOR-$VERSION/data/appdata_*
+rm -f /var/www/html/$VENDOR-$VERSION/data/owncloud.log
+rm -Rf /var/www/html/$VENDOR-$VERSION/data/avatars/*
+rm -Rf /var/www/html/$VENDOR-$VERSION/admin/*
+
+# set up mysql logging
+if [ Z$LOG_MYSQL == Z"log-mysql" ]; then
+  echo "set up mysql logging"
+  touch $OUTPUTDIR/mysql.log
+  chmod 777 $OUTPUTDIR/mysql.log
+  echo "set global general_log_file = '$OUTPUTDIR/mysql.log'" | mysql -u root
+  echo "set global general_log = 'ON'" | mysql -u root
+fi
+
+# run test
+echo "running test..."
+JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
+-J vendor=$VENDOR \
+-J version=$VERSION \
+-q /opt/apache-jmeter-{{ jmeter_version }}/xcloud-performance.properties \
+-t /vagrant/data/xcloud-performance.jmx \
+-l $OUTPUTDIR/results.csv -e \
+-o $OUTPUTDIR/html
+
+# apply extra sql
+if [ $SQL != "none" ]; then
+  if [ -f /opt/dumps/$SQL ]; then
+    echo "doing run with extra sql applied"
+  
+    # reset database
+    echo "importing database"
+    bzcat /opt/dumps/$DB.sql.bz2 | mysql -u root $DB
+
+    echo "applying $SQL"
+    cat /opt/dumps/$SQL | mysql -u root $DB
+
+    # clear owncloud data directory
+    echo "clearing data from previous runs"
+    rm -rf /var/www/html/$VENDOR-$VERSION/data/user*
+    rm -rf /var/www/html/$VENDOR-$VERSION/data/appdata_*
+    rm -f /var/www/html/$VENDOR-$VERSION/data/owncloud.log
+    rm -Rf /var/www/html/$VENDOR-$VERSION/data/avatars/*
+    rm -Rf /var/www/html/$VENDOR-$VERSION/admin/*
+
+    # clear output from previous runs
+    echo "clearing output from previous runs"
+    rm -rf $OUTPUTDIR/html-extra
+    rm -f $OUTPUTDIR/$VENDOR-$VERSION-extra.csv
+
+    # set up mysql logging
+    if [ Z$LOG_MYSQL == Z"log-mysql" ]; then
+      echo "set up mysql logging"
+      touch $OUTPUTDIR/mysql-extra.log
+      chmod 777 $OUTPUTDIR/mysql-extra.log
+      echo "set global general_log_file = '$OUTPUTDIR/mysql-extra.log'" | mysql -u root
+      echo "set global general_log = 'ON'" | mysql -u root
+    fi
+    
+    # run test
+    echo "running test..."
+    JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
+    -J vendor=$VENDOR \
+    -J version=$VERSION \
+    -q /opt/apache-jmeter-{{ jmeter_version }}/xcloud-performance.properties \
+    -t /vagrant/data/xcloud-performance.jmx \
+    -l $OUTPUTDIR/$VENDOR-$VERSION-extra.csv -e \
+    -o $OUTPUTDIR/html-extra
+  fi
+fi
+
+echo "set global general_log = 'OFF'" | mysql -u root

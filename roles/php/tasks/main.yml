@@ -1,0 +1,45 @@
+---
+
+- name: install remi repo
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm  state=present update_cache=yes disable_gpg_check=yes validate_certs=no
+  tags:
+    - php
+    - yum
+  
+- name: install php
+  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
+  with_items: "{{ php_packages }}"
+  notify: restart httpd
+  tags:
+    - php
+    - yum
+    
+-  meta: flush_handlers
+
+# Onderstaande zaken staan (ook) in /opt/remi/php56
+# TODO: settings migreren
+
+#- name: install php.ini
+#  template: src=php.ini.j2 dest=/etc/php.ini owner=root group=root mode=0644
+#  notify: reload httpd
+#  tags:
+#    - php
+
+
+#- name: create directories
+#  file: dest={{ item }} state=directory
+#  with_items:
+#    - /etc/php.d
+#  tags:
+#    - php
+
+#- name: install files in /etc/php.d
+#  template: src={{ item }} dest=/etc/php.d/ owner=root group=root mode=0644
+#  with_items:
+#    - apcu.ini
+#    - opcache.ini
+#    - memcache.ini
+#  notify: reload httpd
+#  tags:
+#    - php
+
