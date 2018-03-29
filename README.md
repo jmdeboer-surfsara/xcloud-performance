@@ -5,7 +5,7 @@ This project strives to create a reproducable setup with which to test different
 The test does the following:
 
 - Start off with a clean database
-- Create an X number of users, usernames are user1, user2, etcetera
+- Create an X number of users, usernames are gebruiker1,gebruiker2, etcetera (gebruiker is Dutch for user)
 - Password is equal to username
 - Do an X number of uploads for each user
 - user1 shares a number of files with user2
