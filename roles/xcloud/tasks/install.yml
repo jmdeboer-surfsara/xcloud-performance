@@ -4,13 +4,13 @@
   stat: path=/var/www/html/{{ vendor }}-{{ version }}/occ
   register: occ
 
-- name: install {{ vendor }} {{ version }}
+- name: install source for {{ vendor }} {{ version }}
   shell: |
     cd /var/www/html
     wget {{ download }}
-    unzip {{ zipfile }}
-    mv {{ unpacked }} {{ vendor }}-{{ version }} 
-    rm {{ zipfile }}
+    mkdir {{ vendor }}-{{ version }}
+    tar xjf {{ archive }} -C {{ vendor }}-{{ version }} --strip-components=1
+    rm {{ archive }}
   when: occ.stat.exists == False
 
 - name: create data directory for {{ vendor }} {{ version }}

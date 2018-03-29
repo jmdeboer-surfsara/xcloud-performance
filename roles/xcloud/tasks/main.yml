@@ -7,8 +7,8 @@
                  version={{ item.version }}
                  database={{ item.dbname }}
                  instanceid={{ item.instanceid }}
-                 download="{{ item.download_server }}/{{ item.vendor }}-{{ item.version }}.zip"
-                 zipfile={{ item.vendor }}-{{ item.version }}.zip
+                 download="{{ item.download_server }}/{{ item.archive }}"
+                 archive={{ item.archive }}
                  unpacked={{ item.vendor }}
   tags:
     - xcloud

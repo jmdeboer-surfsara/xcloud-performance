@@ -62,7 +62,7 @@ echo "running test..."
 JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
 -J vendor=$VENDOR \
 -J version=$VERSION \
--q /opt/apache-jmeter-{{ jmeter_version }}/xcloud-performance.properties \
+-q /vagrant/data/xcloud-performance.properties \
 -t /vagrant/data/xcloud-performance.jmx \
 -l $OUTPUTDIR/results.csv -e \
 -o $OUTPUTDIR/html
@@ -106,7 +106,7 @@ if [ $SQL != "none" ]; then
     JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
     -J vendor=$VENDOR \
     -J version=$VERSION \
-    -q /opt/apache-jmeter-{{ jmeter_version }}/xcloud-performance.properties \
+    -q /vagrant/data/xcloud-performance.properties \
     -t /vagrant/data/xcloud-performance.jmx \
     -l $OUTPUTDIR/$VENDOR-$VERSION-extra.csv -e \
     -o $OUTPUTDIR/html-extra

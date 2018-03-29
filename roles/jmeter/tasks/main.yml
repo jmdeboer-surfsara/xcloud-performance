@@ -42,13 +42,6 @@
   tags:
     - jmeter
 
-- name: copy files to apache-jmeter-{{ jmeter_version }} directory
-  copy: src=files/{{ item }} dest=/opt/apache-jmeter-{{ jmeter_version }} mode=0776
-  with_items:
-    - xcloud-performance.properties
-  tags:
-    - jmeter
-
 - name: copy shell files to apache-jmeter-{{ jmeter_version }} directory
   template: src={{ item }} dest=/opt/apache-jmeter-{{ jmeter_version }}/{{ item | basename | regex_replace("\.j2$", "") }} owner=root group=root mode=0776
   with_fileglob: templates/*.j2

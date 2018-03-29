@@ -10,6 +10,7 @@ setup_packages:
     - bash-completion
     - bind-utils
     - unzip
+    - bzip2
     - MySQL-python
     - xorg-x11-xauth
     - python-requests

@@ -15,14 +15,12 @@ The test does the following:
 
 After cloning the project, you need to copy two .dist files, and edit them to your needs:
 - vars/main.yml.dist -> vars/main.yml
-- roles/jmeter/files/xcloud-performance.properties.dist -> roles/jmeter/files/xcloud-performance.properties
+- data/xcloud-performance.properties.dist -> data/xcloud-performance.properties
 
 
 ## OwnCloud/NextCloud sources
 
-To make sure the downloading of sources works without problems, it is advisible to create your own mirror; downloading from the vendors gave me some trouble. All sources are expected to be in zip format.
-
-You can enter the location of sources in vars/main.yml
+To make sure the downloading of sources works without problems, it is advisible to create your own mirror; downloading from the vendors gave me some trouble at times. You can enter the location of sources in vars/main.yml. The defaults point to the vendors sites.
 
 ## Using in combination with Vagrant
 
@@ -34,7 +32,7 @@ Note: You need the guest additions, you can install these with
 
 - Make a clone of this project
 - Enter the project directory
-- Copy roles/jmeter/files/xcloud-performance.properties.dist to roles/jmeter/filesxcloud-performance.properties and edit
+- Copy data/xcloud-performance.properties.dist to data/xcloud-performance.properties, edit if required
 - Copy vars/main.yml.dist to vars/main.yml, edit if required
 - Execute `vagrant up`
 - Have some tea
