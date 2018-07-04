@@ -14,7 +14,7 @@
     - xcloud
 
 - name: install config.php
-  copy: src=files/{{  item.vendor }}/config-{{  item.version }}.php dest=/var/www/html/{{  item.vendor }}-{{  item.version }}/config/config.php  owner=apache group=apache
+  template: src={{  item.vendor }}/config-{{  item.version }}.php.j2 dest=/var/www/html/{{  item.vendor }}-{{  item.version }}/config/config.php  owner=apache group=apache
   with_items: "{{ xcloud_versions }}"
   tags:
     - xcloud
