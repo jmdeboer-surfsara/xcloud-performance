@@ -1,0 +1,4 @@
+---
+
+# size of the upload, fallocate format
+jmeter_uploadsize = 100

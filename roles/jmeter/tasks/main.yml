@@ -37,8 +37,8 @@
   tags:
     - jmeter
 
-- name: copy testfile to /tmp directory
-  copy: src=files/upload dest=/tmp
+- name: create testfile in /tmp directory
+  shell: /usr/bin/fallocate -l {{ jmeter_uploadsize }} /tmp/upload
   tags:
     - jmeter
 
