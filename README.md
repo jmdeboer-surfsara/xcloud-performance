@@ -13,9 +13,10 @@ The test does the following:
 
 # Setup after cloning
 
-After cloning the project, you need to copy two .dist files, and edit them to your needs:
+After cloning the project, you need to copy three .dist files, and edit them to your needs:
 - vars/main.yml.dist -> vars/main.yml
 - data/xcloud-performance.properties.dist -> data/xcloud-performance.properties
+- roles/jmeter/vars/main.yml.dist -> roles/jmeter/vars/main.yml
 
 
 ## OwnCloud/NextCloud sources
@@ -76,7 +77,7 @@ Start jmeter: /opt/apache-jmeter-*/bin/jmeter.sh
 
 Open the file /vagrant/xcloud-performance.jmx. Now you can run the tests in the GUI. Changes can be committed to git on the Vagrant host.
 
-### Running playbooks `vagrant provision`
+### Running playbooks  `vagrant provision`
 
 You can also run the playbook directly, which is handy if you want to run certain tags only:
 
