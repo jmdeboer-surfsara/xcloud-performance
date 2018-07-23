@@ -5,11 +5,11 @@ This project strives to create a reproducable setup with which to test different
 The test does the following:
 
 - Start off with a clean database
-- Create an X number of users, usernames are gebruiker1,gebruiker2, etcetera (gebruiker is Dutch for user)
+- Create an X number of users, usernames are gebruiker1, gebruiker2, etcetera (gebruiker is Dutch for user)
 - Password is equal to username
 - Do an X number of uploads for each user
-- user1 shares a number of files with user2
-- Propfinds are done for user2 with different number of shares
+- gebruiker1 shares a number of files with gebruiker2
+- Propfinds are done for gebruiker2 with different number of shares
 
 # Setup after cloning
 
@@ -21,7 +21,7 @@ After cloning the project, you need to copy three .dist files, and edit them to 
 
 ## OwnCloud/NextCloud sources
 
-To make sure the downloading of sources works without problems, it is advisible to create your own mirror; downloading from the vendors gave me some trouble at times. You can enter the location of sources in vars/main.yml. The defaults point to the vendors sites.
+To make sure the downloading of sources works without problems, it is possible to create your own mirror; downloading from the vendors gave me some trouble at times. You can enter the location of sources in vars/main.yml. The defaults point to the vendors sites.
 
 ## Using in combination with Vagrant
 
@@ -38,8 +38,8 @@ Note: You need the guest additions, you can install these with
 - Execute `vagrant up`
 - Have some tea
 - Execute `vagrant ssh` to log into the VM
-- You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.7
-- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3 and 10.0.7
+- You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.9
+- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3 and 10.0.9
 - Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2 and 13.0.1
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
