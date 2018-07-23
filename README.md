@@ -87,36 +87,37 @@ In the project directory:
 
 ## Adding new versions
 
-It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.0.7.
+It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.0.9.
 
 Add the new version to:
 - vars/main.yml (use a random instanceid)
 
 Now do a  `vagrant provision`. This will lead to an error.
 
-- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.0.7/
+- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.0.9/
 - Create an admin account with password 'admin'
-- Configure the database, databasename, user and password similar to the other installation, in this case *owncloud-1007*
+- Configure the database, databasename, user and password similar to the other installation, in this case *owncloud-1009*
 - Finish setup
 - Log in using `vagrant ssh`
 - Copy config.php of the new installation to the Vagrant host:
-  `sudo cp /var/www/html/owncloud-10.0.7/config/config.php /vagrant/roles/xcloud/files/owncloud/config-10.0.7.php`
+  `sudo cp /var/www/html/owncloud-10.0.9/config/config.php /vagrant/roles/xcloud/templates/owncloud/config-10.0.9.php.j2`
 - Dump the database to the vagrant host:
-  `mysqldump -u root owncloud-1007 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1007.sql.bz2`
+  `mysqldump -u root owncloud-1009 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1009.sql.bz2`
 - Copy the instanceid from config.php to vars/main.yml
 - Optional: Copy the contents of 'appdata_*instanceid*' naar xcloud/files/data/*vendor*_*version* (see for instance nextcloud-12.0.2)
 - Add the new files to git.
 
 ### Testing the newly added version:
 
-- Log in using `vagrant ssh`
-- `sudo rm -rf /var/www/html/owncloud-10.0.7`
-- `mysqladmin -u root drop owncloud-1007`
+- Still in the vagrant VM:
+- `sudo rm -rf /var/www/html/owncloud-10.0.9`
+- `mysqladmin -f -u root drop owncloud-1009`
 - Log off
 - `vagrant provision`
 
 This should now run without errors.
 
+Navigate to http://localhost:8080/owncloud-10.0.9/ and log in with 'admin/admin'.
 
 ## TODO:
 
