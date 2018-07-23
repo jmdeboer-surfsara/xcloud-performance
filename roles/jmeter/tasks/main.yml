@@ -37,6 +37,11 @@
   tags:
     - jmeter
 
+- name: remove testfile in /tmp directory
+  file: dest=/tmp/upload state=absent
+  tags:
+    - jmeter
+
 - name: create testfile in /tmp directory
   shell: /usr/bin/fallocate -l {{ jmeter_uploadsize }} /tmp/upload
   tags:
