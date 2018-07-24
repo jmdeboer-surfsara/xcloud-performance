@@ -1,13 +1,14 @@
 # Xcloud performance testing
 
-This project strives to create a reproducable setup with which to test different [OwnCloud](https://owncloud.org/) and [Nextcloud](https://nextcloud.com/) version next to one another using [Apache JMeter](https://jmeter.apache.org/).
+This project strives to create a reproducable setup with which to test different [OwnCloud](https://owncloud.org/) and [Nextcloud](https://nextcloud.com/) versions next to one another using [Apache JMeter](https://jmeter.apache.org/).
 
 The test does the following:
 
 - Start off with a clean database
-- Create an X number of users, usernames are gebruiker1, gebruiker2, etcetera (gebruiker is Dutch for user)
+- Create a number of users, usernames are gebruiker1, gebruiker2, etcetera (gebruiker is Dutch for user)
 - Password is equal to username
-- Do an X number of uploads for each user
+- Perform a number of searches for users at specified intervals during user creation
+- Do a number of uploads of specific size for each user
 - gebruiker1 shares a number of files with gebruiker2
 - Propfinds are done for gebruiker2 with different number of shares
 
@@ -118,6 +119,17 @@ Now do a  `vagrant provision`. This will lead to an error.
 This should now run without errors.
 
 Navigate to http://localhost:8080/owncloud-10.0.9/ and log in with 'admin/admin'.
+
+## Running jmeter in gui mode and editting the test plan
+
+You can run Jmeter in gui mode to debug or change the tests. You will need a vagrant host that does X forwarding! How to set that up is beyond the scope of this document.
+
+- Log into the VM with `vagrant ssh`
+- execute `/opt/apache-jmeter-*/bin/jmeter &`
+- Open the jmx file in /vagrant/data
+- In the 'User Defined Variables' section, you need to enter the default vendor and version you want to test against
+- The other settings are read from the xcloud-performance.properties files
+- You're now good to go!
 
 ## TODO:
 

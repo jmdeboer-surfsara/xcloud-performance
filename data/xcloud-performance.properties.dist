@@ -3,14 +3,24 @@ baseUrl=localhost
 port=80
 
 # number of users and uploads per user
-numUsers=20
+numUsers=100
 numUploads=100
 
 # number of shares created, and how many times this is done
 # in the example below, 100 shares are created
-# Note: this number may not be greater than numUploads
+# Note: these two multiplied may not be greater than numUploads
 numShares=20
 numIncrements=5
 
 # number of propfinds done after incrementing share count
+# use a reasonable number to get a good metric
 numPropfinds=10
+
+# interval in user creation after which search is triggered
+# i.e. after creating userSearchInterval users, the search test runs numUserSearches times
+userSearchInterval=25
+
+# how many times is searched for a user to share with
+# use a reasonable number to get a good metric
+numUserSearches=10
+
