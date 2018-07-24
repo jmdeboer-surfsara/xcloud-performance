@@ -13,7 +13,12 @@
   tags:
     - php
     - yum
-    
+
+- name: install info.php in webroot
+  template: src=info.php.j2 dest=/var/www/html/info.php
+  tags:
+    - php
+      
 -  meta: flush_handlers
 
 # Onderstaande zaken staan (ook) in /opt/remi/php56
