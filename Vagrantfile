@@ -7,6 +7,8 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
   config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
