@@ -34,8 +34,7 @@ Note: You need the guest additions, you can install these with
 
 - Make a clone of this project
 - Enter the project directory
-- Copy data/xcloud-performance.properties.dist to data/xcloud-performance.properties, edit if required
-- Copy vars/main.yml.dist to vars/main.yml, edit if required
+- Copy and edit the .dist files (see above)
 - Execute `vagrant up`
 - Have some tea
 - Execute `vagrant ssh` to log into the VM
