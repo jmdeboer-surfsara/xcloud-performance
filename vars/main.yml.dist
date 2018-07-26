@@ -3,6 +3,9 @@
 jmeter_version: "4.0"
 jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jmeter-4.0.zip"
 
+# size of the file used for upload test, fallocate format
+jmeter_uploadsize: 100
+
 xcloud_versions:
   - { vendor: "owncloud",  version: "8.2.11", dbname: "8211", instanceid: "ocvqlsay8x29", download_server: "https://download.owncloud.org/community", archive: "owncloud-8.2.11.tar.bz2" }
   - { vendor: "owncloud",  version: "9.1.8",  dbname: "918",  instanceid: "occhcekf8lhd", download_server: "https://download.owncloud.org/community", archive: "owncloud-9.1.8.tar.bz2" }

@@ -14,11 +14,11 @@ The test does the following:
 
 # Setup after cloning
 
-After cloning the project, you need to copy three .dist files, and edit them to your needs:
+Note: I run linux exclusively; the documentation is written from that perspective. Some tweaking may be required for OSX or Windows.
+
+After cloning the project, you need to copy two .dist files, and edit them to your needs:
 - vars/main.yml.dist -> vars/main.yml
 - data/xcloud-performance.properties.dist -> data/xcloud-performance.properties
-- roles/jmeter/vars/main.yml.dist -> roles/jmeter/vars/main.yml
-
 
 ## OwnCloud/NextCloud sources
 
@@ -96,7 +96,7 @@ Now do a  `vagrant provision`. This will lead to an error.
 
 - In a browser, navigate to the environment, http://localhost:8080/owncloud-10.0.9/
 - Create an admin account with password 'admin'
-- Configure the database, databasename, user and password similar to the other installation, in this case *owncloud-1009*
+- Configure the database, databasename, user and password similar to the other installations, in this case *owncloud-1009*
 - Finish setup
 - Log in using `vagrant ssh`
 - Copy config.php of the new installation to the Vagrant host:
@@ -133,6 +133,8 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
 ## TODO:
 
  - Check settings of the different daemons
+ - Use redis and memcache
+ - Allow testing of apps
  - Expand JMeter tests
  - ...
 
