@@ -1,4 +1,0 @@
----
-
-- name: reload memcached
-  service: name=memcached state=restarted

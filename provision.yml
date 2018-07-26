@@ -10,7 +10,6 @@
     - httpd
     - php
     - mariadb
-    - memcached
     - redis
     - xcloud
     - jmeter
