@@ -1,0 +1,9 @@
+
+"sudo /opt/apache-jmeter-*/run.sh *vendor* *version*" to test a specific version
+"sudo /opt/apache-jmeter-*/all.sh" to test all versions
+
+available are:
+{% for installation in xcloud_versions %}
+{{ installation.vendor }} {{ installation.version }}
+{% endfor %}
+
