@@ -14,7 +14,7 @@ The test does the following:
 
 # Setup after cloning
 
-Note: I run linux exclusively; the documentation is written from that perspective. Some tweaking may be required for OSX or Windows.
+Note: I run linux exclusively; the documentation is written from that perspective. Some tweaking may be required for OSX or Windows, and installing the tools may be more complex.
 
 After cloning the project, you need to copy two .dist files, and edit them to your needs:
 - vars/main.yml.dist -> vars/main.yml
@@ -40,7 +40,7 @@ Note: You need the guest additions, you can install these with
 - Execute `vagrant ssh` to log into the VM
 - You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.9
 - Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3 and 10.0.9
-- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2 and 13.0.1
+- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2 and 13.0.5
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
 
@@ -133,7 +133,6 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
 ## TODO:
 
  - Check settings of the different daemons
- - Use redis and memcache
  - Allow testing of apps
  - Expand JMeter tests
  - ...
