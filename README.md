@@ -119,7 +119,7 @@ This should now run without errors.
 
 Navigate to http://localhost:8080/owncloud-10.0.9/ and log in with 'admin/admin'.
 
-## Running jmeter in gui mode and editting the test plan
+## Running jmeter in gui mode and editing the test plan
 
 You can run Jmeter in gui mode to debug or change the tests. You will need a vagrant host that does X forwarding! How to set that up is beyond the scope of this document.
 

@@ -4,7 +4,7 @@ jmeter_version: "4.0"
 jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jmeter-4.0.zip"
 
 # size of the file used for upload test, fallocate format
-jmeter_uploadsize: 100
+jmeter_uploadsize: 1
 
 xcloud_versions:
   - { vendor: "owncloud",  version: "8.2.11", dbname: "8211", instanceid: "ocvqlsay8x29", download_server: "https://download.owncloud.org/community", archive: "owncloud-8.2.11.tar.bz2" }
@@ -14,5 +14,5 @@ xcloud_versions:
   - { vendor: "nextcloud", version: "10.0.6", dbname: "1006", instanceid: "oc7vpdw8mpl3", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-10.0.6.tar.bz2" }
   - { vendor: "nextcloud", version: "11.0.8", dbname: "1108", instanceid: "oc5k8y6gcasc", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-11.0.8.tar.bz2" }
   - { vendor: "nextcloud", version: "12.0.6", dbname: "1206", instanceid: "oc9zxoi0ie7c", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-12.0.6.tar.bz2" }
-  - { vendor: "nextcloud", version: "13.0.1", dbname: "1301", instanceid: "oc5knij5w92v", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-13.0.1.tar.bz2" }
+  - { vendor: "nextcloud", version: "13.0.5", dbname: "1305", instanceid: "oc5sfthxogm6", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-13.0.5.tar.bz2" }
  
