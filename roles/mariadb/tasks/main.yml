@@ -6,8 +6,7 @@
     - mariadb
   
 - name: install mariadb
-  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
-  with_items: "{{ mariadb_packages }}"
+  yum: name=MariaDB-server state=present update_cache=yes disable_gpg_check=yes validate_certs=no
   tags:
     - mariadb
     - yum
@@ -18,11 +17,10 @@
     - mariadb
 
 - name: populate /etc/my.cnf.d/server.cnf
-  template: src=server.cnf.j2 dest=/etc/my.cnf.d/server.cnf mode=0640
+  template: src=server.cnf.j2 dest=/etc/my.cnf.d/server.cnf mode=0644
   tags:
     - mariadb
  
-# FIXME ?
 - name: ensure mariadb is running and started at boot
   service: name=mariadb enabled=yes state=started
   tags:
