@@ -132,7 +132,6 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
 
 ## TODO:
 
- - Check settings of the different daemons
  - Allow testing of apps
  - Expand JMeter tests
  - ...
