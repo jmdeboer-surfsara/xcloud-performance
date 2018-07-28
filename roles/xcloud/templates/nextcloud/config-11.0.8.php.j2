@@ -18,5 +18,10 @@ $CONFIG = array (
   'dbuser' => 'nextcloud-1108',
   'dbpassword' => 'nextcloud-1108',
   'logtimezone' => 'UTC',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => [
+    'host' => 'localhost',
+    'port' => 6379,
+  ],
   'installed' => true,
 );

@@ -16,6 +16,11 @@ $CONFIG = array (
   'dbtableprefix' => 'oc_',
   'dbuser' => 'owncloud-8211',
   'dbpassword' => 'owncloud-8211',
-  'logtimezone' => 'Europe/Amsterdam',
+  'logtimezone' => 'UTC',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => array(
+    'host' => 'localhost',
+    'port' => 6379,
+   ),
   'installed' => true,
 );

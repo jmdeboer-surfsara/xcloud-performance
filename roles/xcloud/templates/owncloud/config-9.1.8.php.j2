@@ -17,5 +17,10 @@ $CONFIG = array (
   'dbuser' => 'owncloud-918',
   'dbpassword' => 'owncloud-918',
   'logtimezone' => 'UTC',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => [
+    'host' => 'localhost',
+    'port' => 6379,
+  ],
   'installed' => true,
 );
