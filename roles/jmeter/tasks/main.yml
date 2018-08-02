@@ -37,13 +37,21 @@
   tags:
     - jmeter
 
-- name: remove testfile in /tmp directory
-  file: dest=/tmp/upload state=absent
+- name: check the testfile
+  stat: path=/tmp/upload
+  register: testfile
   tags:
     - jmeter
 
-- name: create testfile in /tmp directory
+- name: remove testfile in /tmp directory, if nessecary
+  file: dest=/tmp/upload state=absent
+  when: testfile.stat.exists and (testfile.stat.size != jmeter_uploadsize)
+  tags:
+    - jmeter
+
+- name: create testfile in /tmp directory, if nessecary
   shell: /usr/bin/fallocate -l {{ jmeter_uploadsize }} /tmp/upload
+  when: (testfile.stat.exists == false) or (testfile.stat.exists and (testfile.stat.size != jmeter_uploadsize))
   tags:
     - jmeter
 
