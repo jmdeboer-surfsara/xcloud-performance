@@ -38,7 +38,7 @@ mkdir $OUTPUTDIR/html
 
 # reset database
 echo "importing database"
-bzcat /opt/dumps/$DB.sql.bz2 | mysql -u root $DB
+bzcat /vagrant/roles/jmeter/files/dumps/$DB.sql.bz2 | mysql -u root $DB
 
 # clear owncloud data directory
 echo "clearing data from previous runs"
@@ -58,7 +58,7 @@ if [ Z$LOG_MYSQL == Z"log-mysql" ]; then
 fi
 
 # run test
-echo "running test..."
+echo "running test of $VENDOR $VERSION..."
 JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
 -J vendor=$VENDOR \
 -J version=$VERSION \
@@ -69,15 +69,15 @@ JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmete
 
 # apply extra sql
 if [ $SQL != "none" ]; then
-  if [ -f /opt/dumps/$SQL ]; then
+  if [ -f /vagrant/roles/jmeter/files/dumps/$SQL ]; then
     echo "doing run with extra sql applied"
   
     # reset database
     echo "importing database"
-    bzcat /opt/dumps/$DB.sql.bz2 | mysql -u root $DB
+    bzcat /vagrant/roles/jmeter/files/dumps/$DB.sql.bz2 | mysql -u root $DB
 
     echo "applying $SQL"
-    cat /opt/dumps/$SQL | mysql -u root $DB
+    cat /vagrant/roles/jmeter/files/dumps/$SQL | mysql -u root $DB
 
     # clear owncloud data directory
     echo "clearing data from previous runs"
@@ -102,7 +102,7 @@ if [ $SQL != "none" ]; then
     fi
     
     # run test
-    echo "running test..."
+    echo "running test of $VENDOR $VERSION..."
     JVM_ARGS="-Xms1024m -Xmx1024m" /opt/apache-jmeter-{{ jmeter_version }}/bin/jmeter.sh -n \
     -J vendor=$VENDOR \
     -J version=$VERSION \

@@ -57,10 +57,10 @@ The tests run on a clean database, so all data is written by the test. You can a
 ### Log MySQL queries
 
 By passing a command line option, all queries are logged and written to the output directory:
-- `sudo /opt/apache-jmeter-4.0/all.sh log-mysql`
+- `sudo /opt/apache-jmeter-*/all.sh log-mysql`
 
 or
-- `sudo /opt/apache-jmeter-4.0/run.sh *vendor* *version* log-mysql`
+- `sudo /opt/apache-jmeter-*/run.sh *vendor* *version* log-mysql`
 
 ### Checking the results
 
@@ -77,7 +77,7 @@ Start jmeter: /opt/apache-jmeter-*/bin/jmeter.sh
 
 Open the file /vagrant/xcloud-performance.jmx. Now you can run the tests in the GUI. Changes can be committed to git on the Vagrant host.
 
-### Running playbooks  `vagrant provision`
+### Running playbooks with `vagrant provision`
 
 You can also run the playbook directly, which is handy if you want to run certain tags only:
 

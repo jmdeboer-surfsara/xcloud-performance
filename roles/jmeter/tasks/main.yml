@@ -32,11 +32,6 @@
   tags:
     - jmeter
 
-- name: copy database dumps to /opt
-  copy: src=files/dumps dest=/opt
-  tags:
-    - jmeter
-
 - name: check the testfile
   stat: path=/tmp/upload
   register: testfile
