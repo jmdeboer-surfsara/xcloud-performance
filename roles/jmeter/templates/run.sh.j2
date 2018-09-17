@@ -42,7 +42,7 @@ bzcat /vagrant/roles/jmeter/files/dumps/$DB.sql.bz2 | mysql -u root $DB
 
 # clear owncloud data directory
 echo "clearing data from previous runs"
-rm -rf /var/www/html/$VENDOR-$VERSION/data/user*
+rm -rf /var/www/html/$VENDOR-$VERSION/data/gebruiker*
 rm -rf /var/www/html/$VENDOR-$VERSION/data/appdata_*
 rm -f /var/www/html/$VENDOR-$VERSION/data/owncloud.log
 rm -Rf /var/www/html/$VENDOR-$VERSION/data/avatars/*
@@ -81,7 +81,7 @@ if [ $SQL != "none" ]; then
 
     # clear owncloud data directory
     echo "clearing data from previous runs"
-    rm -rf /var/www/html/$VENDOR-$VERSION/data/user*
+    rm -rf /var/www/html/$VENDOR-$VERSION/data/gebruiker*
     rm -rf /var/www/html/$VENDOR-$VERSION/data/appdata_*
     rm -f /var/www/html/$VENDOR-$VERSION/data/owncloud.log
     rm -Rf /var/www/html/$VENDOR-$VERSION/data/avatars/*
@@ -112,5 +112,11 @@ if [ $SQL != "none" ]; then
     -o $OUTPUTDIR/html-extra
   fi
 fi
+
+echo "clearing data from this run"
+rm -rf /var/www/html/$VENDOR-$VERSION/data/gebruiker*
+rm -rf /var/www/html/$VENDOR-$VERSION/data/appdata_*
+rm -Rf /var/www/html/$VENDOR-$VERSION/data/avatars/*
+rm -Rf /var/www/html/$VENDOR-$VERSION/admin/*
 
 echo "set global general_log = 'OFF'" | mysql -u root
