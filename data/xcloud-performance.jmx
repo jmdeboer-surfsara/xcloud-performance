@@ -237,11 +237,6 @@
               </CounterConfig>
               <hashTree/>
             </hashTree>
-            <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="User search loop" enabled="true">
-              <boolProp name="LoopController.continue_forever">true</boolProp>
-              <stringProp name="LoopController.loops">${numUserSearches}</stringProp>
-            </LoopController>
-            <hashTree/>
           </hashTree>
         </hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop users and upload files" enabled="true">
