@@ -11,6 +11,7 @@ xcloud_versions:
   - { vendor: "owncloud",  version: "9.1.8",  dbname: "918",  instanceid: "occhcekf8lhd", download_server: "https://download.owncloud.org/community", archive: "owncloud-9.1.8.tar.bz2" }
   - { vendor: "owncloud",  version: "10.0.3", dbname: "1003", instanceid: "oca5f6063rfo", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.3.tar.bz2" }
   - { vendor: "owncloud",  version: "10.0.9", dbname: "1009", instanceid: "ocrejzk70fw7", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.9.tar.bz2" }
+  - { vendor: "owncloud",  version: "10.0.10", dbname: "10010", instanceid: "ocyf3cz495dw", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.10.tar.bz2" }
   - { vendor: "nextcloud", version: "10.0.6", dbname: "1006", instanceid: "oc7vpdw8mpl3", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-10.0.6.tar.bz2" }
   - { vendor: "nextcloud", version: "11.0.8", dbname: "1108", instanceid: "oc5k8y6gcasc", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-11.0.8.tar.bz2" }
   - { vendor: "nextcloud", version: "12.0.6", dbname: "1206", instanceid: "oc9zxoi0ie7c", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-12.0.6.tar.bz2" }
