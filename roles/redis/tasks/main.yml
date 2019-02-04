@@ -1,8 +1,7 @@
 ---
 
 - name: install redis
-  yum: name={{ item }} update_cache=yes disable_gpg_check=yes validate_certs=no
-  with_items: "{{ redis_packages }}"
+  yum: name={{ redis_packages }} update_cache=yes disable_gpg_check=yes validate_certs=no
   tags:
     - redis
     - yum

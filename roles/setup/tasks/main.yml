@@ -1,8 +1,7 @@
 ---
 
 - name: install packages
-  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
-  with_items: "{{ setup_packages }}"
+  yum: name={{ setup_packages }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
   tags:
     - setup
     - yum

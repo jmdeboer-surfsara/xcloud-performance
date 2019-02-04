@@ -2,14 +2,15 @@
 
 - name: install {{ item.vendor }} {{ item.version }} sources
   with_items: "{{ xcloud_versions }}"
-  include_tasks: install.yml
-                 vendor={{ item.vendor }}
-                 version={{ item.version }}
-                 database={{ item.dbname }}
-                 instanceid={{ item.instanceid }}
-                 download="{{ item.download_server }}/{{ item.archive }}"
-                 archive={{ item.archive }}
-                 unpacked={{ item.vendor }}
+  include: install.yml
+  vars:
+    vendor: "{{ item.vendor }}"
+    version: "{{ item.version }}"
+    database: "{{ item.dbname }}"
+    instanceid: "{{ item.instanceid }}"
+    download: "{{ item.download_server }}/{{ item.archive }}"
+    archive: "{{ item.archive }}"
+    unpacked: "{{ item.vendor }}"
   tags:
     - xcloud
 

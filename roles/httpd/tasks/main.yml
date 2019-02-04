@@ -1,8 +1,7 @@
 ---
 
 - name: install httpd
-  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
-  with_items: "{{ httpd_packages }}"
+  yum: name={{ httpd_packages }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
   tags:
     - httpd
     - yum

@@ -7,8 +7,7 @@
     - yum
   
 - name: install php
-  yum: name={{ item }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
-  with_items: "{{ php_packages }}"
+  yum: name={{ php_packages }} state=present update_cache=yes disable_gpg_check=yes validate_certs=no
   notify: restart httpd
   tags:
     - php
