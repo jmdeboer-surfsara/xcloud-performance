@@ -26,7 +26,10 @@ To make sure the downloading of sources works without problems, it is possible t
 
 ## Using in combination with Vagrant
 
-Install [Ansible >=2.4](https://www.ansible.com/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
+Install [Ansible](https://www.ansible.com/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/). Known to work with these versions:
+- Ansible 2.7.6
+- Vagrant 2.0.2
+- VirtualBox 5.2.4
 
 Note: You need the guest additions, you can install these with
 
@@ -39,8 +42,8 @@ Note: You need the guest additions, you can install these with
 - Have some tea
 - Execute `vagrant ssh` to log into the VM
 - You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.9
-- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3 and 10.0.9
-- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2 and 13.0.5
+- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3, 10.0.9 and 10.0.10
+- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2, 13.0.5, 14.0.6 and 15.0.2
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
 
@@ -75,15 +78,11 @@ It's easiest if you log into the vagrant VM using X forwarding.
 
 Start jmeter: /opt/apache-jmeter-*/bin/jmeter.sh
 
-Open the file /vagrant/xcloud-performance.jmx. Now you can run the tests in the GUI. Changes can be committed to git on the Vagrant host.
+Open the file /vagrant/data/xcloud-performance.jmx. Now you can run the tests in the GUI. Changes can be committed to git on the Vagrant host.
 
-### Running playbooks with `vagrant provision`
+### Provisioning the VM
 
-You can also run the playbook directly, which is handy if you want to run certain tags only:
-
-In the project directory:
-`ansible-playbook provision.yml`
-
+You can use `vagrant provision`, or you can also run the playbook directly with `ansible-playbook provision.yml`, which is handy if you want to run certain tags only.
 
 ## Adding new versions
 
@@ -136,7 +135,6 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
  - Expand JMeter tests
  - ...
 
-
 ## Known issues:
 
-- Downloading the JMeter zip file fails sometimes. A workaround is to download in manually on the VM and place it in /opt
+- Downloading the JMeter zip file fails sometimes. A workaround is to download it manually on the VM and place it in /opt.
