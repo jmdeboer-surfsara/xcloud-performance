@@ -20,6 +20,7 @@
   template: src=server.cnf.j2 dest=/etc/my.cnf.d/server.cnf mode=0644
   tags:
     - mariadb
+    - config
  
 - name: ensure mariadb is running and started at boot
   service: name=mariadb enabled=yes state=started

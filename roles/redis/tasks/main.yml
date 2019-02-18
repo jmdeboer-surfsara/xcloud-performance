@@ -11,12 +11,14 @@
   register: r
   tags:
     - redis
+    - config
 
 - name: create /etc/redis.conf
   when: "r is defined and not r.stat.exists"
   file: dest=/etc/redis.conf state=touch owner=root group=root mode=0644
   tags:
     - redis
+    - config
 
 - name: populate redis.conf
   lineinfile: dest=/etc/redis.conf regexp={{ item.regexp }} line={{ item.line }}
@@ -28,6 +30,7 @@
     - restart redis
   tags:
     - redis
+    - config
 
 - name: ensure redis is is running and started at boot
   service: name=redis state=started enabled=yes
