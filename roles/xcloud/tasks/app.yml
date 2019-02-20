@@ -1,0 +1,45 @@
+---
+
+- name: check if {{ app }} app is already installed
+  stat: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/apps/{{ app }}
+  register: installed
+  tags:
+    - xcloud
+    - apps
+
+- name: install {{ app }} app via git
+  when: not installed.stat.exists and (apps[app].source == "git")
+  shell: git clone {{ apps[app].url }} /var/www/html/{{ vendor.key }}-{{ version.key }}/apps/{{ app }}
+  tags:
+    - xcloud
+    - apps
+  
+- name: install {{ app }} app by downloading zip file
+  when: not installed.stat.exists and (apps[app].source == "archive")
+  shell: |
+    cd /var/www/html/{{ vendor.key }}-{{ version.key }}/apps
+    mkdir {{ app }}
+    wget {{ apps[app].url }}
+    unzip {{ apps[app].url | basename }} -d tmp
+    mv tmp/*/* {{ app }}
+    rm {{ apps[app].url | basename }}
+    rm -rf tmp
+  tags:
+    - xcloud
+    - apps
+
+- name: run composer
+  when: (not installed.stat.exists) and (apps[app].composer is defined)
+  shell: |
+    cd /var/www/html/{{ vendor.key }}-{{ version.key }}/apps/{{ app }}
+    make all
+  tags:
+    - xcloud
+    - apps
+
+- name: enable {{ app }} app
+  when: not installed.stat.exists
+  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ app }}
+  tags:
+    - xcloud
+    - apps

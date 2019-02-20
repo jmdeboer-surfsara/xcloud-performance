@@ -86,22 +86,24 @@ You can use `vagrant provision`, or you can also run the playbook directly with 
 
 ## Adding new versions
 
-It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.0.9.
+It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.1.0.
 
 Add the new version to:
 - vars/main.yml (use a random instanceid)
 
 Now do a  `vagrant provision`. This will lead to an error.
 
-- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.0.9/
+- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.1.0/
 - Create an admin account with password 'admin'
-- Configure the database, databasename, user and password similar to the other installations, in this case *owncloud-1009*
+- Configure the database, databasename, user and password similar to the other installations, in this case *owncloud-1010*
 - Finish setup
+- Do not log into ownCloud yet!
 - Log in using `vagrant ssh`
-- Copy config.php of the new installation to the Vagrant host:
-  `sudo cp /var/www/html/owncloud-10.0.9/config/config.php /vagrant/roles/xcloud/templates/owncloud/config-10.0.9.php.j2`
+- Copy config.php of the new installation to the Vagrant host:  
+  `sudo cp /var/www/html/owncloud-10.1.0/config/config.php /vagrant/roles/xcloud/templates/owncloud/config-10.1.0.j2`  
+  Remove the first two and the last line, so you are left with just the contents of the $CONFIG array. See the other version as an example.
 - Dump the database to the vagrant host:
-  `mysqldump -u root owncloud-1009 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1009.sql.bz2`
+  `mysqldump -u root owncloud-1010 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1010.sql.bz2`
 - Copy the instanceid from config.php to vars/main.yml
 - Optional: Copy the contents of 'appdata_*instanceid*' naar xcloud/files/data/*vendor*_*version* (see for instance nextcloud-12.0.2)
 - Add the new files to git.
@@ -109,14 +111,27 @@ Now do a  `vagrant provision`. This will lead to an error.
 ### Testing the newly added version:
 
 - Still in the vagrant VM:
-- `sudo rm -rf /var/www/html/owncloud-10.0.9`
-- `mysqladmin -f -u root drop owncloud-1009`
+- `sudo rm -rf /var/www/html/owncloud-10.1.0`
+- `mysqladmin -f -u root drop owncloud-1010`
 - Log off
 - `vagrant provision`
 
 This should now run without errors.
 
 Navigate to http://localhost:8080/owncloud-10.0.9/ and log in with 'admin/admin'.
+
+## Adding apps ##
+
+This is a work in progress, but you can now add apps. To do so, specify the app in the 'apps' dict as in vars/main.yml.dist  
+You can then tell each version of the cloud software which apps to use, again see vars/main.yml.dist
+
+As you can see from the examples in the dist file, there are 2 ways to add the app: 'archive' or 'git'.  
+If you add the 'composer' variable, a 'make all' will be done in the app directory.
+
+If the app requires configuration, place a snippet in templates/includes/*[appname]*.j2  
+See files\_primary\_s3 as an example.
+
+In addition, you can enable/disable bundled app with the 'enable' and 'disable' lists.
 
 ## Running jmeter in gui mode and editing the test plan
 
@@ -131,7 +146,6 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
 
 ## TODO:
 
- - Allow testing of apps
  - Expand JMeter tests
  - ...
 

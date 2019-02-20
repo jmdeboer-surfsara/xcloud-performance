@@ -3,7 +3,8 @@
 "sudo /opt/apache-jmeter-*/all.sh" to test all versions
 
 available are:
-{% for installation in xcloud_versions %}
-{{ installation.vendor }} {{ installation.version }}
+{% for installation in xcloud_versions|dict2items %}
+{% for version in installation.value %}
+{{ installation.key }} {{ version }}
 {% endfor %}
-
+{% endfor %}

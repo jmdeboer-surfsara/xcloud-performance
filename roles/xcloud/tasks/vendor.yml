@@ -1,0 +1,10 @@
+---
+
+- include_tasks: install.yml
+  loop_control:
+    loop_var: version
+  loop: "{{ vendor.value | dict2items }}"
+  tags:
+    - xcloud
+    - apps
+    

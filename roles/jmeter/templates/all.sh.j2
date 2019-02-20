@@ -2,6 +2,8 @@
 
 cd /opt/apache-jmeter-{{ jmeter_version }}
 
-{% for item in xcloud_versions %}
-./run.sh {{ item.vendor }} {{ item.version }} $1
+{% for installation in xcloud_versions|dict2items %}
+{% for version in installation.value %}
+./run.sh {{ installation.key }} {{ version }} $1
+{% endfor %}
 {% endfor %}

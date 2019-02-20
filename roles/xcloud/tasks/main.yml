@@ -1,26 +1,14 @@
 ---
 
-- name: install {{ item.vendor }} {{ item.version }} sources
-  with_items: "{{ xcloud_versions }}"
-  include: install.yml
-  vars:
-    vendor: "{{ item.vendor }}"
-    version: "{{ item.version }}"
-    database: "{{ item.dbname }}"
-    instanceid: "{{ item.instanceid }}"
-    download: "{{ item.download_server }}/{{ item.archive }}"
-    archive: "{{ item.archive }}"
-    unpacked: "{{ item.vendor }}"
+- include_tasks: vendor.yml
+  loop: "{{ xcloud_versions | dict2items }}"
+  loop_control:
+    loop_var: vendor
   tags:
     - xcloud
-
-- name: install config.php
-  template: src={{  item.vendor }}/config-{{  item.version }}.php.j2 dest=/var/www/html/{{  item.vendor }}-{{  item.version }}/config/config.php  owner=apache group=apache
-  with_items: "{{ xcloud_versions }}"
-  tags:
-    - xcloud
+    - apps
 
 - name: install /etc/motd
   template: src=motd.j2 dest=/etc/motd
   tags:
-    - xcloud
+   - xcloud

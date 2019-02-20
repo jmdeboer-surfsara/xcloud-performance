@@ -16,13 +16,15 @@ LOG_MYSQL=$3
 DB="none"
 SQL="none"
 
-{% for item in xcloud_versions %}
-if [ $VENDOR == "{{ item.vendor }}" ]; then
-  if [ $VERSION == "{{ item.version }}" ]; then
-    DB="{{ item.vendor }}-{{ item.dbname }}"
-    SQL="{{ item.vendor }}-{{ item.dbname }}-extra.sql"
+{% for installation in xcloud_versions|dict2items %}
+{% for version in installation.value %}
+if [ $VENDOR == "{{ installation.key }}" ]; then
+  if [ $VERSION == "{{ version }}" ]; then
+    DB="{{ installation.key }}-{{ xcloud_versions[installation.key][version].dbname }}"
+    SQL="{{ installation.key }}-{{ xcloud_versions[installation.key][version].dbname }}-extra.sql"
   fi
 fi
+{% endfor %}
 {% endfor %}
 
 if [ $DB == "none" ]; then

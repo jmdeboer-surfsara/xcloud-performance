@@ -1,58 +1,126 @@
 ---
 
-- name: check for installed {{ vendor }} {{ version }}
-  stat: path=/var/www/html/{{ vendor }}-{{ version }}/occ
+- name: check for installed {{ vendor.key }} {{ version.key }}
+  stat: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/occ
   register: occ
+  tags:
+    - xcloud
 
-- name: install source for {{ vendor }} {{ version }}
+- name: install source for {{ vendor.key }} {{ version.key }}
   shell: |
     cd /var/www/html
-    wget {{ download }}
-    mkdir {{ vendor }}-{{ version }}
-    tar xjf {{ archive }} -C {{ vendor }}-{{ version }} --strip-components=1
-    rm {{ archive }}
+    wget {{ version.value.download_server }}/{{version.value.archive }}
+    mkdir {{ vendor.key }}-{{ version.key }}
+    tar xjf {{ version.value.archive }} -C {{ vendor.key }}-{{ version.key }} --strip-components=1
+    rm {{ version.value.archive }}
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: create data directory for {{ vendor }} {{ version }}
-  file: path=/var/www/html/{{ vendor }}-{{ version }}/data state=directory owner=apache group=apache
+- name: create data directory for {{ vendor.key }} {{ version.key }}
+  file: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/data state=directory owner=apache group=apache
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: copy optional data files for {{ vendor }} {{ version }}
-  copy: src=files/data/{{ vendor }}-{{ version }}/appdata_{{ instanceid }} dest=/var/www/html/{{ vendor }}-{{ version }}/data/ owner=apache group=apache
+- name: copy optional data files for {{ vendor.key }} {{ version.key }}
+  copy: src=files/data/{{ vendor.key }}-{{ version.key }}/appdata_{{ version.value.instanceid }} dest=/var/www/html/{{ vendor.key }}-{{ version.key }}/data/ owner=apache group=apache
   failed_when: False
   ignore_errors: True
   when: occ.stat.exists == False
+  tags:
+    - xcloud
   
-- name: create .ocdata file for {{ vendor }} {{ version }}
-  file: path=/var/www/html/{{ vendor }}-{{ version }}/data/.ocdata state=touch owner=apache group=apache
+- name: create .ocdata file for {{ vendor.key }} {{ version.key }}
+  file: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/data/.ocdata state=touch owner=apache group=apache
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: fix permission on config directory for {{ vendor }} {{ version }}
-  file: path=/var/www/html/{{ vendor }}-{{ version }}/config owner=apache group=apache
+- name: fix permission on config directory for {{ vendor.key }} {{ version.key }}
+  file: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/config owner=apache group=apache
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: fix permission on apps directory for {{ vendor }} {{ version }}
-  file: path=/var/www/html/{{ vendor }}-{{ version }}/apps owner=apache group=apache
+- name: fix permission on apps directory for {{ vendor.key }} {{ version.key }}
+  file: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/apps owner=apache group=apache
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: create database for {{ vendor }} {{ version }}
+- name: create database for {{ vendor.key }} {{ version.key }}
   mysql_db:
-    name: "{{ vendor }}-{{ database }}"
+    name: "{{ vendor.key }}-{{ version.value.dbname }}"
     state: present
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: create database user for {{ vendor }} {{ version }}
+- name: create database user for {{ vendor.key }} {{ version.key }}
   mysql_user:
-    name: "{{ vendor }}-{{ database }}"
-    password: "{{ vendor }}-{{ database }}"
-    priv: "{{ vendor }}-{{ database }}.*:ALL,GRANT"
+    name: "{{ vendor.key }}-{{ version.value.dbname }}"
+    password: "{{ vendor.key }}-{{ version.value.dbname }}"
+    priv: "{{ vendor.key }}-{{ version.value.dbname }}.*:ALL,GRANT"
     state: present
   when: occ.stat.exists == False
+  tags:
+    - xcloud
 
-- name: import database for {{ vendor }} {{ version }}
+- name: import database for {{ vendor.key }} {{ version.key }}
   mysql_db:
-    name: "{{ vendor }}-{{ database }}"
+    name: "{{ vendor.key }}-{{ version.value.dbname }}"
     state: import
-    target: /vagrant/roles/jmeter/files/dumps/{{ vendor }}-{{ database }}.sql.bz2
+    target: /vagrant/roles/jmeter/files/dumps/{{ vendor.key }}-{{ version.value.dbname }}.sql.bz2
   when: occ.stat.exists == False
-    
+  tags:
+    - xcloud
+
+- debug: msg="collect includes for config file"
+  register: includes
+  with_fileglob: templates/includes/*.j2
+  tags:
+    - xcloud
+    - config
+
+- name: install config.php
+  template:
+    src: "config.php.j2"
+    dest: "/var/www/html/{{ vendor.key }}-{{ version.key }}/config/config.php"
+    owner: "apache"
+    group: "apache"
+  tags:
+    - xcloud
+    - config
+
+- name: install apps for {{ vendor.key }} {{ version.key }}
+  include_tasks: app.yml
+  when: version.value.apps is defined
+  loop: "{{ version.value.apps }}"
+  loop_control:
+    loop_var: app
+  tags:
+    - xcloud
+    - apps
+
+- name: enable other apps for {{ vendor.key }} {{ version.key }}
+  when: version.value.enable is defined
+  loop: "{{ version.value.enable }}"
+  loop_control:
+    loop_var: enable
+  changed_when: False
+  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ enable }}
+  tags:
+    - xcloud
+    - apps
+
+- name: disable apps for {{ vendor.key }} {{ version.key }}
+  when: version.value.disable is defined
+  loop: "{{ version.value.disable }}"
+  loop_control:
+    loop_var: disable
+  changed_when: False
+  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:disable {{ disable }}
+  tags:
+    - xcloud
+    - apps

@@ -7,15 +7,88 @@ jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jme
 jmeter_uploadsize: 1
 
 xcloud_versions:
-  - { vendor: "owncloud",  version: "8.2.11", dbname: "8211", instanceid: "ocvqlsay8x29", download_server: "https://download.owncloud.org/community", archive: "owncloud-8.2.11.tar.bz2" }
-  - { vendor: "owncloud",  version: "9.1.8",  dbname: "918",  instanceid: "occhcekf8lhd", download_server: "https://download.owncloud.org/community", archive: "owncloud-9.1.8.tar.bz2" }
-  - { vendor: "owncloud",  version: "10.0.3", dbname: "1003", instanceid: "oca5f6063rfo", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.3.tar.bz2" }
-  - { vendor: "owncloud",  version: "10.0.9", dbname: "1009", instanceid: "ocrejzk70fw7", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.9.tar.bz2" }
-  - { vendor: "owncloud",  version: "10.0.10", dbname: "10010", instanceid: "ocyf3cz495dw", download_server: "https://download.owncloud.org/community", archive: "owncloud-10.0.10.tar.bz2" }
-  - { vendor: "nextcloud", version: "10.0.6", dbname: "1006", instanceid: "oc7vpdw8mpl3", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-10.0.6.tar.bz2" }
-  - { vendor: "nextcloud", version: "11.0.8", dbname: "1108", instanceid: "oc5k8y6gcasc", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-11.0.8.tar.bz2" }
-  - { vendor: "nextcloud", version: "12.0.6", dbname: "1206", instanceid: "oc9zxoi0ie7c", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-12.0.6.tar.bz2" }
-  - { vendor: "nextcloud", version: "13.0.5", dbname: "1305", instanceid: "oc5sfthxogm6", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-13.0.5.tar.bz2" }
-  - { vendor: "nextcloud", version: "14.0.6", dbname: "1406", instanceid: "ocgphmminphf", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-14.0.6.tar.bz2" }
-  - { vendor: "nextcloud", version: "15.0.2", dbname: "1502", instanceid: "oc71k7hktjjf", download_server: "https://download.nextcloud.com/server/releases", archive: "nextcloud-15.0.2.tar.bz2" }
+  owncloud:
+    8.2.11:
+      dbname: "8211"
+      instanceid: "ocvqlsay8x29"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-8.2.11.tar.bz2"
+    9.1.8:
+      dbname: "918"
+      instanceid: "occhcekf8lhd"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-9.1.8.tar.bz2"
+    10.0.3:
+      dbname: "1003"
+      instanceid: "oca5f6063rfo"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.0.3.tar.bz2"
+    10.0.9:
+      dbname: "1009"
+      instanceid: "ocrejzk70fw7"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.0.9.tar.bz2"
+    10.0.10:
+      dbname: "10010"
+      instanceid: "ocyf3cz495dw"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.0.10.tar.bz2"
+      apps: [ music ]
+    10.1.0:
+      dbname: "1010"
+      instanceid: "ocsexk0u3sly"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.1.0.tar.bz2"
+      apps: [ music, files_texteditor ]
+      enable: [ external ]
+      disable: [ comments, market ]
+  nextcloud:
+    10.0.6:
+      dbname: "1006"
+      instanceid: "oc7vpdw8mpl3"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-10.0.6.tar.bz2
+    11.0.8:
+      dbname: "1108"
+      instanceid: "oc5k8y6gcasc"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-11.0.8.tar.bz2"
+    12.0.6:
+      dbname: "1206"
+      instanceid: "oc9zxoi0ie7c"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-12.0.6.tar.bz2"
+    13.0.5:
+      dbname: "1305"
+      instanceid: "oc5sfthxogm6"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-13.0.5.tar.bz2"
+    14.0.6:
+      dbname: "1406"
+      instanceid: "ocgphmminphf"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-14.0.6.tar.bz2"
+    15.0.2:
+      dbname: "1502"
+      instanceid: "oc71k7hktjjf"
+      download_server: "https://download.nextcloud.com/server/releases"
+      archive: "nextcloud-15.0.2.tar.bz2"
+ 
+apps:
+  music:
+    source: "archive"
+    url: "https://github.com/owncloud/music/archive/master.zip"
+  files_texteditor:
+    source: "git"
+    url: "https://github.com/owncloud/files_texteditor"
+
+# other variables as required
+s3_key: "key"
+s3_secret: "secret"
+s3_endpoint: "https://s3-endpoint:443/"
+s3_region: "us-east-1"
+s3_bucket: "owncloud"
+s3_version: "2006-03-01"
+s3_use_path_style_endpoint: "true"
+
  

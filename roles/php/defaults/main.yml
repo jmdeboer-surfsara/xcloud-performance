@@ -5,7 +5,7 @@ php_date_timezone: Europe/Amsterdam
 php_output_buffering: "Off"
 php_realpath_cache_size: 256k
 php_expose_php: "Off"
-php_post_max_size: 16G
+php_post_max_size: 256M
 php_default_charset: UTF-8
 php_sys_temp_dir: /tmp
 php_upload_tmp_dir: /tmp
@@ -40,7 +40,6 @@ php_apc_enable_cli: 0
 php_apc_max_file_size: 2M
 php_apc_stat: 0
 
-
 php_packages:
   - php70-php
   - php70-php-cli
@@ -52,11 +51,12 @@ php_packages:
   - php70-php-pdo
   - php70-php-pear
   - php70-php-pecl-apcu
-  - php70-php-pecl-memcached
   - php70-php-pecl-redis
   - php70-php-pecl-zip
   - php70-php-process
   - php70-php-soap
   - php70-php-xml
   - php70-php-intl
+  - composer
+  - npm
 

@@ -1,0 +1,11 @@
+#jinja2: trim_blocks:False
+<?php
+$CONFIG = array (
+{% include "templates/" + vendor.key + "/config-" + version.key + ".j2" %}
+{%- for filename in includes.results %}
+{% if filename.item|basename|regex_replace("\.j2$", "") in version.value.apps %}
+{% include "templates/includes/" + filename.item | basename %}
+{% endif %}
+{% endfor -%}
+);
+
