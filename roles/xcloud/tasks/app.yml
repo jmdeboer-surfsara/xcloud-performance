@@ -7,9 +7,15 @@
     - xcloud
     - apps
 
+- name: debug
+  debug: msg={{ apps[app] }}
+  tags:
+    - xcloud
+    - apps
+  
 - name: install {{ app }} app via git
   when: not installed.stat.exists and (apps[app].source == "git")
-  shell: git clone {{ apps[app].url }} /var/www/html/{{ vendor.key }}-{{ version.key }}/apps/{{ app }}
+  shell: git clone {{ apps[app].url }} /var/www/html/{{ vendor.key }}-{{ version.key }}/apps/{{ app }} -b {{ apps[app].branch }}
   tags:
     - xcloud
     - apps

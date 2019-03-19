@@ -81,6 +81,7 @@ apps:
   files_texteditor:
     source: "git"
     url: "https://github.com/owncloud/files_texteditor"
+    branch: "release-0.2.0"
 
 # other variables as required
 s3_key: "key"
