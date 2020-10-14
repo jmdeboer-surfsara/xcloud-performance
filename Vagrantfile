@@ -37,6 +37,8 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
+  config.vm.define "xcloud-performance"
+
   config.vm.provider "virtualbox" do |vb|
     vb.name = "xcloud-performance"
     vb.memory = 2048

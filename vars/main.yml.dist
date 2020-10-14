@@ -1,7 +1,7 @@
 ---
 
-jmeter_version: "5.0"
-jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jmeter-5.0.zip"
+jmeter_version: "5.2.1"
+jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jmeter-5.2.1.zip"
 
 # size of the file used for upload test, fallocate format
 jmeter_uploadsize: 1
@@ -13,21 +13,25 @@ xcloud_versions:
       instanceid: "ocvqlsay8x29"
       download_server: "https://download.owncloud.org/community"
       archive: "owncloud-8.2.11.tar.bz2"
+      apps: []
     9.1.8:
       dbname: "918"
       instanceid: "occhcekf8lhd"
       download_server: "https://download.owncloud.org/community"
       archive: "owncloud-9.1.8.tar.bz2"
+      apps: []
     10.0.3:
       dbname: "1003"
       instanceid: "oca5f6063rfo"
       download_server: "https://download.owncloud.org/community"
       archive: "owncloud-10.0.3.tar.bz2"
+      apps: []
     10.0.9:
       dbname: "1009"
       instanceid: "ocrejzk70fw7"
       download_server: "https://download.owncloud.org/community"
       archive: "owncloud-10.0.9.tar.bz2"
+      apps: []
     10.0.10:
       dbname: "10010"
       instanceid: "ocyf3cz495dw"
@@ -42,37 +46,60 @@ xcloud_versions:
       apps: [ music, files_texteditor ]
       enable: [ external ]
       disable: [ comments, market ]
+    10.2.1:
+      dbname: "1021"
+      instanceid: "ocrsse2qukrz"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.2.1.tar.bz2"
+      apps: []
+    10.3.1:
+      dbname: "1031"
+      instanceid: "ocf1p3bs3ph3"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.3.1.tar.bz2"
+    10.4.1:
+      dbname: "1041"
+      instanceid: "octee80wn5ze"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.4.1.tar.bz2"
+      apps: []
   nextcloud:
     10.0.6:
       dbname: "1006"
       instanceid: "oc7vpdw8mpl3"
       download_server: "https://download.nextcloud.com/server/releases"
-      archive: "nextcloud-10.0.6.tar.bz2
+      archive: "nextcloud-10.0.6.tar.bz2"
+      apps: []
     11.0.8:
       dbname: "1108"
       instanceid: "oc5k8y6gcasc"
       download_server: "https://download.nextcloud.com/server/releases"
       archive: "nextcloud-11.0.8.tar.bz2"
+      apps: []
     12.0.6:
       dbname: "1206"
       instanceid: "oc9zxoi0ie7c"
       download_server: "https://download.nextcloud.com/server/releases"
       archive: "nextcloud-12.0.6.tar.bz2"
+      apps: []
     13.0.5:
       dbname: "1305"
       instanceid: "oc5sfthxogm6"
       download_server: "https://download.nextcloud.com/server/releases"
       archive: "nextcloud-13.0.5.tar.bz2"
+      apps: []
     14.0.6:
       dbname: "1406"
       instanceid: "ocgphmminphf"
       download_server: "https://download.nextcloud.com/server/releases"
       archive: "nextcloud-14.0.6.tar.bz2"
+      apps: []
     15.0.2:
       dbname: "1502"
       instanceid: "oc71k7hktjjf"
       download_server: "https://download.nextcloud.com/server/releases"
       archive: "nextcloud-15.0.2.tar.bz2"
+      apps: []
  
 apps:
   music:

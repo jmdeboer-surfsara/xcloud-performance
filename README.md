@@ -27,9 +27,9 @@ To make sure the downloading of sources works without problems, it is possible t
 ## Using in combination with Vagrant
 
 Install [Ansible](https://www.ansible.com/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/). Known to work with these versions:
-- Ansible 2.7.6
-- Vagrant 2.0.2
-- VirtualBox 5.2.4
+- Ansible 2.9.10
+- Vagrant 2.2.10
+- VirtualBox 5.2.5
 
 Note: You need the guest additions, you can install these with
 
@@ -42,7 +42,7 @@ Note: You need the guest additions, you can install these with
 - Have some tea
 - Execute `vagrant ssh` to log into the VM
 - You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.9
-- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3, 10.0.9 and 10.0.10
+- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3, 10.0.9, 10.0.10, 10.1.0, 10.2.1, 10.3.1, 10.4.1
 - Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2, 13.0.5, 14.0.6 and 15.0.2
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
@@ -86,24 +86,24 @@ You can use `vagrant provision`, or you can also run the playbook directly with 
 
 ## Adding new versions
 
-It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.1.0.
+It is advisable to first set up the project in a working state. In this example we will add OwnCloud 10.4.1.
 
 Add the new version to:
 - vars/main.yml (use a random instanceid)
 
 Now do a  `vagrant provision`. This will lead to an error.
 
-- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.1.0/
+- In a browser, navigate to the environment, http://localhost:8080/owncloud-10.4.1/
 - Create an admin account with password 'admin'
-- Configure the database, databasename, user and password similar to the other installations, in this case *owncloud-1010*
+- Configure the database, databasename, user and password similar to the other installations, in this case *owncloud-1041*
 - Finish setup
 - Do not log into ownCloud yet!
 - Log in using `vagrant ssh`
 - Copy config.php of the new installation to the Vagrant host:  
-  `sudo cp /var/www/html/owncloud-10.1.0/config/config.php /vagrant/roles/xcloud/templates/owncloud/config-10.1.0.j2`  
+  `sudo cp /var/www/html/owncloud-10.4.1/config/config.php /vagrant/roles/xcloud/templates/owncloud/config-10.4.1.j2`  
   Remove the first two and the last line, so you are left with just the contents of the $CONFIG array. See the other version as an example.
 - Dump the database to the vagrant host:
-  `mysqldump -u root owncloud-1010 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1010.sql.bz2`
+  `mysqldump -u root owncloud-1010 | bzip2 > /vagrant/roles/jmeter/files/dumps/owncloud-1041.sql.bz2`
 - Copy the instanceid from config.php to vars/main.yml
 - Optional: Copy the contents of 'appdata_*instanceid*' naar xcloud/files/data/*vendor*_*version* (see for instance nextcloud-12.0.2)
 - Add the new files to git.
@@ -111,14 +111,14 @@ Now do a  `vagrant provision`. This will lead to an error.
 ### Testing the newly added version:
 
 - Still in the vagrant VM:
-- `sudo rm -rf /var/www/html/owncloud-10.1.0`
-- `mysqladmin -f -u root drop owncloud-1010`
+- `sudo rm -rf /var/www/html/owncloud-10.4.1`
+- `mysqladmin -f -u root drop owncloud-1041`
 - Log off
 - `vagrant provision`
 
 This should now run without errors.
 
-Navigate to http://localhost:8080/owncloud-10.0.9/ and log in with 'admin/admin'.
+Navigate to http://localhost:8080/owncloud-10.4.1/ and log in with 'admin/admin'.
 
 ## Adding apps ##
 
