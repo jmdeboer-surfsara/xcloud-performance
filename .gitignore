@@ -7,3 +7,4 @@ xcloud-performance.properties
 .project
 .vagrant
 *.retry
+*.log
