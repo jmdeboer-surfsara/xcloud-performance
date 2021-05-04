@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
-  config.vm.box = "centos/7"
+  config.vm.box = "bento/centos-7.9"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
