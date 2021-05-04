@@ -6,18 +6,19 @@ jmeter_download: "http://mirrors.supportex.net/apache/jmeter/binaries/apache-jme
 # size of the file used for upload test, fallocate format
 jmeter_uploadsize: 1
 
+# commented-out versions are no longer supported due to php version being incompatible
 xcloud_versions:
   owncloud:
-    8.2.11:
-      dbname: "8211"
-      instanceid: "ocvqlsay8x29"
-      download_server: "https://download.owncloud.org/community"
-      archive: "owncloud-8.2.11.tar.bz2"
-    9.1.8:
-      dbname: "918"
-      instanceid: "occhcekf8lhd"
-      download_server: "https://download.owncloud.org/community"
-      archive: "owncloud-9.1.8.tar.bz2"
+#    8.2.11:
+#      dbname: "8211"
+#      instanceid: "ocvqlsay8x29"
+#      download_server: "https://download.owncloud.org/community"
+#      archive: "owncloud-8.2.11.tar.bz2"
+#    9.1.8:
+#      dbname: "918"
+#      instanceid: "occhcekf8lhd"
+#      download_server: "https://download.owncloud.org/community"
+#      archive: "owncloud-9.1.8.tar.bz2"
     10.0.3:
       dbname: "1003"
       instanceid: "oca5f6063rfo"
@@ -42,12 +43,22 @@ xcloud_versions:
       apps: [ music, files_texteditor ]
       enable: [ external ]
       disable: [ comments, market ]
+    10.3.1:
+      dbname: "1031"
+      instanceid: "oclv1drgpq5v"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.3.1.tar.bz2"
+    10.4.1:
+      dbname: "1041"
+      instanceid: "oc4j4i1lit1k"
+      download_server: "https://download.owncloud.org/community"
+      archive: "owncloud-10.4.1.tar.bz2"
   nextcloud:
-    10.0.6:
-      dbname: "1006"
-      instanceid: "oc7vpdw8mpl3"
-      download_server: "https://download.nextcloud.com/server/releases"
-      archive: "nextcloud-10.0.6.tar.bz2
+#    10.0.6:
+#      dbname: "1006"
+#      instanceid: "oc7vpdw8mpl3"
+#      download_server: "https://download.nextcloud.com/server/releases"
+#      archive: "nextcloud-10.0.6.tar.bz2"
     11.0.8:
       dbname: "1108"
       instanceid: "oc5k8y6gcasc"
@@ -83,7 +94,7 @@ apps:
     url: "https://github.com/owncloud/files_texteditor"
     branch: "release-0.2.0"
 
-# other variables as required
+# other variables as required, for example:
 s3_key: "key"
 s3_secret: "secret"
 s3_endpoint: "https://s3-endpoint:443/"
