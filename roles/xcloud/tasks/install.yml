@@ -23,6 +23,12 @@
   tags:
     - xcloud
 
+- name: create apps-external directory for {{ vendor.key }} {{ version.key }}
+  file: path=/var/www/html/{{ vendor.key }}-{{ version.key }}/apps-external state=directory owner=apache group=apache
+  when: occ.stat.exists == False
+  tags:
+    - xcloud
+
 - name: copy optional data files for {{ vendor.key }} {{ version.key }}
   copy: src=files/data/{{ vendor.key }}-{{ version.key }}/appdata_{{ version.value.instanceid }} dest=/var/www/html/{{ vendor.key }}-{{ version.key }}/data/ owner=apache group=apache
   failed_when: False
@@ -109,7 +115,7 @@
   loop_control:
     loop_var: enable
   changed_when: False
-  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ enable }}
+  shell: sudo -u apache /opt/remi/php71/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ enable }}
   tags:
     - xcloud
     - apps
@@ -120,7 +126,7 @@
   loop_control:
     loop_var: disable
   changed_when: False
-  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:disable {{ disable }}
+  shell: sudo -u apache /opt/remi/php71/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:disable {{ disable }}
   tags:
     - xcloud
     - apps

@@ -39,7 +39,7 @@
 
 - name: enable {{ app }} app
   when: not installed.stat.exists
-  shell: sudo -u apache /opt/remi/php70/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ app }}
+  shell: sudo -u apache /opt/remi/php71/root/bin/php /var/www/html/{{ vendor.key }}-{{ version.key }}/occ app:enable {{ app }}
   tags:
     - xcloud
     - apps

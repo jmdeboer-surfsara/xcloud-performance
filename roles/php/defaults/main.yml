@@ -41,22 +41,22 @@ php_apc_max_file_size: 2M
 php_apc_stat: 0
 
 php_packages:
-  - php70-php
-  - php70-php-cli
-  - php70-php-common
-  - php70-php-gd
-  - php70-php-mbstring
-  - php70-php-mysqlnd
-  - php70-php-opcache
-  - php70-php-pdo
-  - php70-php-pear
-  - php70-php-pecl-apcu
-  - php70-php-pecl-redis
-  - php70-php-pecl-zip
-  - php70-php-process
-  - php70-php-soap
-  - php70-php-xml
-  - php70-php-intl
+  - php71-php
+  - php71-php-cli
+  - php71-php-common
+  - php71-php-gd
+  - php71-php-mbstring
+  - php71-php-mysqlnd
+  - php71-php-opcache
+  - php71-php-pdo
+  - php71-php-pear
+  - php71-php-pecl-apcu
+  - php71-php-pecl-redis
+  - php71-php-pecl-zip
+  - php71-php-process
+  - php71-php-soap
+  - php71-php-xml
+  - php71-php-intl
   - composer
   - npm
 
