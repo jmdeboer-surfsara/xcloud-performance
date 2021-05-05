@@ -2,7 +2,7 @@
 
 This project strives to create a reproducable setup with which to test different [OwnCloud](https://owncloud.org/) and [Nextcloud](https://nextcloud.com/) versions next to one another using [Apache JMeter](https://jmeter.apache.org/).
 
-A presentation of the project is available on [Youtube](https://www.youtube.com/watch?v=_a50rSE049E).
+A [presentation of the project](https://www.youtube.com/watch?v=_a50rSE049E) is available on Youtube.
 
 The test does the following:
 
