@@ -27,9 +27,9 @@ To make sure the downloading of sources works without problems, it is possible t
 ## Using in combination with Vagrant
 
 Install [Ansible](https://www.ansible.com/), [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/). Known to work with these versions:
-- Ansible 2.7.6
-- Vagrant 2.0.2
-- VirtualBox 5.2.4
+- Ansible 2.9.6
+- Vagrant 2.2.14
+- VirtualBox 6.1.18
 
 Note: You need the guest additions, you can install these with
 
@@ -42,8 +42,8 @@ Note: You need the guest additions, you can install these with
 - Have some tea
 - Execute `vagrant ssh` to log into the VM
 - You can browse to the different installations on http://localhost:8080/*vendor*-*version*, i.e. http://localhost:8080/owncloud-10.0.9
-- Current Owncloud versions are 8.2.11, 9.1.8, 10.0.3, 10.0.9 and 10.0.10
-- Current Nextcloud versions are 10.0.6, 11.0.4, 12.0.2, 13.0.5, 14.0.6 and 15.0.2
+- Current Owncloud versions are 10.0.3, 10.0.9, 10.0.10, 10.1.0, 10.3.1 and 10.4.1
+- Current Nextcloud versions are 11.0.4, 12.0.2, 13.0.5, 14.0.6 and 15.0.2
 - Log on to the webinterface with admin/admin
 - Send changes to the VM with `vagrant provision`
 
@@ -152,3 +152,4 @@ You can run Jmeter in gui mode to debug or change the tests. You will need a vag
 ## Known issues:
 
 - Downloading the JMeter zip file fails sometimes. A workaround is to download it manually on the VM and place it in /opt.
+- Some of the older versions no longer work without downgrading PHP, so comparing all the versions is not possible.
